@@ -1,0 +1,220 @@
+.navbar-custom {
+    background-color: #194C2B;
+    padding-top: 0.3vw;
+    padding-bottom: 0.3vw;
+}
+
+
+
+
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to
+
+/* .fade-leave-active below version 2.1.8 */
+    {
+    opacity: 0;
+}
+
+.send img {
+    margin: 6px 8px 0 0;
+}
+
+.send p {
+    background: #435f7a;
+    color: #f5f5f5;
+}
+
+/*
+.msgContainer {
+    vertical-align: middle;
+    margin-left: 10px;
+    border-radius: 25px;
+    background-color: #82ccdd;
+    padding: 10px;
+    position: relative;
+}
+*/
+.picture {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    background-size: 32px 32px;
+    border-radius: 32px;
+    border: 2px white solid;
+    margin-right: 10px;
+    background-image: url('/images/silhouette.jpg');
+}
+
+body {
+    font-family: Helvetica, Verdana, Arial, sans-serif;
+    background: url("/images/soccer.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/*para anchos de pantalla medio a grande (aplica para Landscape)*/
+@media screen and (min-width: 601px) {
+    table {
+        margin: auto;
+        font-size: 4vw;
+    }
+
+    #botonNav {
+        font-size: 8vw;
+
+    }
+
+    h1 {
+        font-size: 10vw;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-size: 7vw;
+    }
+
+    h3 {
+        font-size: 5vw;
+    }
+
+    h4 {
+        font-size: 5vw;
+        font-weight: 700;
+    }
+
+}
+
+
+/*para anchos de pantalla sm a md (aplica para portrait)*/
+@media screen and (max-width: 600px) {
+    table {
+        margin: auto;
+        font-size: 3vw;
+    }
+
+    #botonNav {
+        font-size: 6vw;
+
+    }
+
+    h1 {
+        font-size: 6vw;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-size: 4vw;
+    }
+
+    h3 {
+        font-size: 4vw;
+    }
+
+    h4 {
+        font-size: 4vw;
+        font-weight: 700;
+    }
+
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}

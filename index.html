@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" sizes="128x128" href="images/balon-de-futbol_128.png">
+    <link rel="shortcut icon" sizes="196x196" href="images/balon-de-futbol_256.png">
+    <link rel="apple-touch-icon" href="images/app_icon60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/balon-de-futbol_32.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/balon-de-futbol_128.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/balon-de-futbol_128.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+    <title>NYSL Game Information- Northside Youth Soccer League</title>
+    <!-- Material Design Lite -->
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-orange.min.css">
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="styles/nysl_3.css">
+    <link rel="stylesheet" href="styles/chat.css">
+
+</head>
+
+<body>
+    <div class="container-fluid" id="app">
+        <div class="row">
+            <div class="col-4">
+                <img src="images/nysl_logo.png" class="img-fluid" id="nyslLogo" alt="Logo de la NYSL">
+            </div>
+            <div class="col align-self-center">
+                <div class="text-center">
+                    <h2>Northside Youth Soccer League</h2>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row justify-content-around" id="contacto">
+            <div class="col">
+                <div class="row">
+                    <div class="col text-center">
+                        <h3>NYSL Contact Information</h3>
+                    </div>
+                </div>
+                <div class="row border border-primary shadow-lg p-3 mb-5 bg-white">
+                    <div class="col">
+                        <p>Contact</p>
+                        <p>Please email us at <a href="mailto:nysl@chisoccer.org">nysl@chisoccer.org</a></p>
+                        <p>We will reply to your email as soon as we can.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-around posts-container" id="juegosProgramados">
+            <div class="col">
+                <div class="row">
+                    <div class="col text-center">
+                        <h3>NYSL Game Information</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <h3>Fall Schedule</h3>
+                        <h4>*All games take place on Saturday</h4>
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Teams</th>
+                                    <th>Location</th>
+                                    <th>Times</th>
+                                    <th>Game Messages</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in partidos">
+                                    <td>{{item.MES}}, {{item.DIA}}</td>
+                                    <td>{{item.TEAMS}}</td>
+                                    <td>{{item.LOCATION}}</td>
+                                    <td>{{item.TIME}}</td>
+                                    <td>
+                                        <!--                                        <button v-on:click="seleccionDePartido(item.ID)">Msg for {{item.ID}}</button></td>-->
+                                        <button v-on:click="mostrarChat(item.ID)">Msg for {{item.ID}}</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="teamNotes">
+            <div class="row">
+                <div class="col text-center">
+                    <h2>Leave your Message!</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="button" id="signInButton" v-on:click="login" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i>Sign in with Google</button>
+
+                    <button type="button" id="logOutButton" v-on:click="logoutEmail" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">settings_power</i>LogOut</button>
+                </div>
+
+            </div>
+
+            <div class="row" id="formRegister">
+                <div class="col">
+                    <label>Email:</label>
+                    <input type="text" v-model:value="userEmail">
+                    <label>Password:</label>
+
+                    <input type="password" v-model:value="userPassword">
+                    <button type="button" class="btn btn-primary" v-on:click="register">Register</button>
+                    <!--                        <button type="button" class="btn btn-primary" v-on:click="loginEmail">LogIn</button>-->
+
+
+                </div>
+            </div>
+
+            <div class="row posts-container" id="formMensaje">
+                <div class="col">
+                    <label>Message:</label>
+                    <input type="text" v-model:value="mensaje" id="inputText">
+                    <button type="button" class="btn btn-success" v-on:click="send">Enviar</button>
+
+                    <div class="d-flex justify-content-start mb-4" v-for="mensaje in mensajes">
+                        <div class="img_cont_msg">
+                            <img :src="mensaje.picture" class="rounded-circle user_img_msg">
+                        </div>
+                        <div class="msgcontainer">
+                            {{mensaje.email}}: {{ mensaje.texto }}
+                            <span class="msg_time">{{mensaje.date}}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="row justify-content-around fixed-bottom navbar-custom">
+            <div class="col-auto">
+                <a class="btn btn-primary text-center" onclick="mostrarFall()">Fall Schedule</a>
+            </div>
+            <div class="col-auto">
+                <a class="btn btn-primary text-center" onclick="mostrarContact()">Contact</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
+
+    <script src="js/firebase.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.1.7/dist/vuetify.min.js"></script>
+
+    <script src="js/main.js"></script>
+    <!--<script src="js/mainFirebase.js"></script>-->
+
+</body></html>
